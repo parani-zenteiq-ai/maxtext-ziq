@@ -1,0 +1,29 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Config: Qwen3 dense  (standard or custom-scaled)
+#
+# Use this template when your training used model_name='qwen3-0.6b' (or any
+# other Qwen3 dense variant).
+#
+# If you trained with the standard architecture (no custom dims), set
+# override_model_architecture: false and remove the architecture section.
+# If you scaled the model up/down, set override_model_architecture: true and
+# add the architecture fields matching your training config.
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Model identity ────────────────────────────────────────────────────────────
+model_type: dense                    # moe | dense
+maxtext_model_name: qwen3-0.6b       # must match a key in utils/hf_model_configs.py
+                                     # other valid dense names:
+                                     #   qwen3-1.7b, qwen3-4b, qwen3-8b,
+                                     #   qwen3-14b, qwen3-32b
+
+# ── Paths  (edit these for each run / VM) ────────────────────────────────────
+lustre_base: /lustre-data/my-dense-run
+checkpoint_subdir: my-run-name/checkpoints
+
+hf_out_subdir:     hf_converted
+params_out_subdir: param_only
+
+# ── Conversion settings ───────────────────────────────────────────────────────
+weight_dtype: bfloat16
+override_model_architecture: false   # set true and add arch fields if you used custom dims
